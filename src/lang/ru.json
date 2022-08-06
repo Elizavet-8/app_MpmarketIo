@@ -317,5 +317,10 @@
     "t-cancel": "Отмена",
     "t-old-password": "Старый пароль*",
     "t-new-password": "Новый пароль*",
-    "t-confirm-password": "Подтвердите пароль*"
+    "t-confirm-password": "Подтвердите пароль*",
+    "t-main-cards": {
+        "sales": "Продажи",
+        "orders": "Заказы",
+        "balance": "Баланс"
+    }
 }

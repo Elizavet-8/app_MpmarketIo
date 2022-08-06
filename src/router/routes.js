@@ -277,7 +277,7 @@ export default [
         component: () => import("../views/apps/ecommerce/order-details"),
     },
     {
-        path: "/ecommerce/add-product",
+        path: "/add-product",
         name: "add-product",
         meta: {title: "Create Product", authRequired: true},
         component: () => import("../views/apps/ecommerce/add-product"),

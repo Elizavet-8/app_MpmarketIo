@@ -315,5 +315,10 @@
   "t-cancel": "Cancel",
   "t-old-password": "Old Password*",
   "t-new-password": "New Password*",
-  "t-confirm-password": "Confirm Password*"
+  "t-confirm-password": "Confirm Password*",
+  "t-main-cards": {
+    "sales": "Sales",
+    "orders": "Orders",
+    "balance": "Balance"
+  }
 }
