@@ -9,7 +9,6 @@ import "@vueform/multiselect/themes/default.css";
 import axios from 'axios';
 // import animationData from "@/components/widgets/msoeawqm.json";
 import Lottie from "@/components/widgets/lottie.vue";
-
 export default {
   page: {
     title: "Products",
@@ -17,6 +16,13 @@ export default {
       name: "description",
       content: appConfig.description,
     },],
+  },
+
+  components: {
+    // PageHeader,
+    lottie: Lottie,
+    Slider,
+    Multiselect,
   },
   data() {
     return {
@@ -159,7 +165,6 @@ export default {
     });
 
   },
-
   methods: {
     deleteMultiple() {
       let ids_array = [];
@@ -288,12 +293,6 @@ export default {
     }
   },
 
-  components: {
-    // PageHeader,
-    lottie: Lottie,
-    Slider,
-    Multiselect,
-  },
 };
 </script>
 <template>
