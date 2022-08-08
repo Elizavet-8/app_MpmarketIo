@@ -139,30 +139,30 @@ export default {
     },
   },
   beforeMount() {
-    axios.get('https://api-node.themesbrand.website/apps/product').then((data) => {
-      this.productsData = [];
-      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
-        "Oct", "Nov", "Dec"
-      ];
-      data.data.data.forEach(row => {
-        var dd = new Date(row.publishedDate)
-        row.publishedDate = dd.getDate() + " " + monthNames[dd.getMonth()] + ", " + dd.getFullYear();
-        var hours = dd.getHours();
-        var minutes = dd.getMinutes();
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        hours = hours < 10 ? '0' + hours : hours;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        var strTime = hours + ':' + minutes + ' ' + ampm;
-        row.publishedtime = strTime;
-        row.image_src = 'https://api-node.themesbrand.website/fileupload/product_bucket/' + row.image;
-        // row.image_src = `@/assets/images/products/img-8.png`;
-        this.productsData.push(row);
-      })
-    }).catch((er) => {
-      console.log(er)
-    });
+    // axios.get('https://api-node.themesbrand.website/apps/product').then((data) => {
+    //   this.productsData = [];
+    //   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+    //     "Oct", "Nov", "Dec"
+    //   ];
+    //   data.data.data.forEach(row => {
+    //     var dd = new Date(row.publishedDate)
+    //     row.publishedDate = dd.getDate() + " " + monthNames[dd.getMonth()] + ", " + dd.getFullYear();
+    //     var hours = dd.getHours();
+    //     var minutes = dd.getMinutes();
+    //     var ampm = hours >= 12 ? 'PM' : 'AM';
+    //     hours = hours % 12;
+    //     hours = hours ? hours : 12; // the hour '0' should be '12'
+    //     hours = hours < 10 ? '0' + hours : hours;
+    //     minutes = minutes < 10 ? '0' + minutes : minutes;
+    //     var strTime = hours + ':' + minutes + ' ' + ampm;
+    //     row.publishedtime = strTime;
+    //     row.image_src = 'https://api-node.themesbrand.website/fileupload/product_bucket/' + row.image;
+    //     // row.image_src = `@/assets/images/products/img-8.png`;
+    //     this.productsData.push(row);
+    //   })
+    // }).catch((er) => {
+    //   console.log(er)
+    // });
 
   },
   methods: {
@@ -303,10 +303,10 @@ export default {
         <div class="card-header">
           <div class="d-flex mb-3">
             <div class="flex-grow-1">
-              <h5 class="fs-16">Filters</h5>
+              <h5 class="fs-16">Фильтры</h5>
             </div>
             <div class="flex-shrink-0">
-              <a href="#" class="text-decoration-underline">Clear All</a>
+              <a href="#" class="text-decoration-underline">Очистить</a>
             </div>
           </div>
 
@@ -326,21 +326,42 @@ export default {
           <div class="card-body border-bottom">
             <div>
               <p class="text-muted text-uppercase fs-12 fw-medium mb-2">
-                Products
+                Товары
               </p>
               <ul class="list-unstyled mb-0">
                 <li>
-                  <a href="#" class="d-flex py-1">
+                  <a class="d-flex py-1" data-bs-toggle="collapse" href="#filterlist-jeans" role="button"
+                     aria-expanded="true" aria-controls="filterlist-fashion">
                     <div class="flex-grow-1">
-                      <h5 class="fs-13 mb-0">Grocery</h5>
+                      <h5 class="fs-13 mb-0">Джинсы</h5>
+                    </div>
+                    <div class="flex-shrink-0 ms-2">
+                      <span class="badge bg-light text-muted">5</span>
                     </div>
                   </a>
+
+                  <div class="collapse show" id="filterlist-jeans">
+                    <ul class="ps-4">
+                      <li>
+                        <a href="#" class="d-block py-1 text-muted">Скинни</a>
+                      </li>
+                      <li>
+                        <a href="#" class="d-block py-1 text-muted">Прямые</a>
+                      </li>
+                      <li>
+                        <a href="#" class="d-block py-1 text-muted">Слимы</a>
+                      </li>
+                      <li>
+                        <a href="#" class="d-block py-1 text-muted">Буткат</a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
                 <li>
                   <a class="d-flex py-1" data-bs-toggle="collapse" href="#filterlist-fashion" role="button"
                      aria-expanded="true" aria-controls="filterlist-fashion">
                     <div class="flex-grow-1">
-                      <h5 class="fs-13 mb-0">Fashion</h5>
+                      <h5 class="fs-13 mb-0">Рубашки и блузки</h5>
                     </div>
                     <div class="flex-shrink-0 ms-2">
                       <span class="badge bg-light text-muted">5</span>
@@ -350,141 +371,16 @@ export default {
                   <div class="collapse show" id="filterlist-fashion">
                     <ul class="ps-4">
                       <li>
-                        <a href="#" class="d-block py-1 text-muted">Men's Wear</a>
+                        <a href="#" class="d-block py-1 text-muted">Рубашки</a>
                       </li>
                       <li>
-                        <a href="#" class="d-block py-1 text-muted">Women Western Wear</a>
+                        <a href="#" class="d-block py-1 text-muted">Блузки</a>
                       </li>
                       <li>
-                        <a href="#" class="d-block py-1 text-muted">Footwear</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Watches</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Kids</a>
+                        <a href="#" class="d-block py-1 text-muted">Туники</a>
                       </li>
                     </ul>
                   </div>
-                </li>
-                <li>
-                  <a href="#" class="d-flex py-1">
-                    <div class="flex-grow-1">
-                      <h5 class="fs-13 mb-0">Mobiles</h5>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a class="d-flex py-1" data-bs-toggle="collapse" href="#filterlist-electronics" role="button"
-                     aria-expanded="false" aria-controls="filterlist-electronics">
-                    <div class="flex-grow-1">
-                      <h5 class="fs-13 mb-0">Electronics</h5>
-                    </div>
-                    <div class="flex-shrink-0 ms-2">
-                      <span class="badge bg-light text-muted">5</span>
-                    </div>
-                  </a>
-
-                  <div class="collapse" id="filterlist-electronics">
-                    <ul class="ps-4">
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Audio</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Computer</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Laptop</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Gaming</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Tablets</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li>
-                  <a class="d-flex py-1" data-bs-toggle="collapse" href="#filterlist-furniture" role="button"
-                     aria-expanded="false" aria-controls="filterlist-furniture">
-                    <div class="flex-grow-1">
-                      <h5 class="fs-13 mb-0">Home & Furniture</h5>
-                    </div>
-                    <div class="flex-shrink-0 ms-2">
-                      <span class="badge bg-light text-muted">6</span>
-                    </div>
-                  </a>
-
-                  <div class="collapse" id="filterlist-furniture">
-                    <ul class="ps-4">
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Home Furnishing</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Living rooms</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Kitchen & Dining</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Bedroom Room</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Home Decor</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Tools & Utility</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li>
-                  <a class="d-flex py-1" data-bs-toggle="collapse" href="#filterlist-appliances" role="button"
-                     aria-expanded="false" aria-controls="filterlist-appliances">
-                    <div class="flex-grow-1">
-                      <h5 class="fs-13 mb-0">Appliances</h5>
-                    </div>
-                    <div class="flex-shrink-0 ms-2">
-                      <span class="badge bg-light text-muted">7</span>
-                    </div>
-                  </a>
-
-                  <div class="collapse" id="filterlist-appliances">
-                    <ul class="ps-4">
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Televisions</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Washing Machines</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Air Conditioners</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Refrigerator</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Kitchen Appliances</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Home Appliances</a>
-                      </li>
-                      <li>
-                        <a href="#" class="d-block py-1 text-muted">Premium Appliances</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li>
-                  <a href="#" class="d-flex py-1">
-                    <div class="flex-grow-1">
-                      <h5 class="fs-13 mb-0">Kids</h5>
-                    </div>
-                  </a>
                 </li>
               </ul>
             </div>
@@ -492,7 +388,7 @@ export default {
 
           <div class="card-body border-bottom">
             <p class="text-muted text-uppercase fs-12 fw-medium mb-5">
-              Price
+              Стоимость
             </p>
 
             <div id="product-price-range"></div>
@@ -504,7 +400,7 @@ export default {
               <button class="accordion-button bg-transparent shadow-none" type="button" data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseBrands" aria-expanded="true"
                       aria-controls="flush-collapseBrands">
-                <span class="text-muted text-uppercase fs-12 fw-medium">Brands</span>
+                <span class="text-muted text-uppercase fs-12 fw-medium">Бренды</span>
                 <span class="badge bg-success rounded-pill align-middle ms-1">2</span>
               </button>
             </h2>
@@ -519,29 +415,125 @@ export default {
                 <div class="d-flex flex-column gap-2 mt-3">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productBrandRadio5" checked/>
-                    <label class="form-check-label" for="productBrandRadio5">Boat</label>
+                    <label class="form-check-label" for="productBrandRadio5">Prada</label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productBrandRadio4"/>
-                    <label class="form-check-label" for="productBrandRadio4">OnePlus</label>
+                    <label class="form-check-label" for="productBrandRadio4">Puma</label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productBrandRadio3"/>
-                    <label class="form-check-label" for="productBrandRadio3">Realme</label>
+                    <label class="form-check-label" for="productBrandRadio3">Lacoste</label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productBrandRadio2"/>
-                    <label class="form-check-label" for="productBrandRadio2">Sony</label>
+                    <label class="form-check-label" for="productBrandRadio2">Marc O'Polo</label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productBrandRadio1" checked/>
-                    <label class="form-check-label" for="productBrandRadio1">JBL</label>
+                    <label class="form-check-label" for="productBrandRadio1">Chloe`</label>
                   </div>
 
                   <div>
                     <button type="button" class="btn btn-link text-decoration-none text-uppercase fw-medium p-0">
-                      1,235 More
+                      1,235 товаров
                     </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end accordion-item -->
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingColors">
+              <button class="accordion-button bg-transparent shadow-none" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseColors" aria-expanded="true"
+                      aria-controls="flush-collapseColors">
+                <span class="text-muted text-uppercase fs-12 fw-medium">Бренды</span>
+                <span class="badge bg-success rounded-pill align-middle ms-1">2</span>
+              </button>
+            </h2>
+
+            <div id="flush-collapseColors" class="accordion-collapse collapse show"
+                 aria-labelledby="flush-headingColors">
+              <div class="accordion-body text-body pt-0">
+                <div class="d-flex flex-column gap-2 mt-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productColorRadio7" checked/>
+                    <label class="form-check-label" for="productColorRadio7">Красный</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productColorRadio6"/>
+                    <label class="form-check-label" for="productColorRadio6">Оранжевый</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productColorRadio5"/>
+                    <label class="form-check-label" for="productColorRadio5">Желтый</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productColorRadio4"/>
+                    <label class="form-check-label" for="productColorRadio4">Зеленый</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productColorRadio3" checked/>
+                    <label class="form-check-label" for="productColorRadio3">Голубой</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productColorRadio2" checked/>
+                    <label class="form-check-label" for="productColorRadio2">Синий</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productColorRadio1" checked/>
+                    <label class="form-check-label" for="productColorRadio1">Фиолетовый</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end accordion-item -->
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingSize">
+              <button class="accordion-button bg-transparent shadow-none" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseSize" aria-expanded="true"
+                      aria-controls="flush-collapseSize">
+                <span class="text-muted text-uppercase fs-12 fw-medium">Размеры</span>
+                <span class="badge bg-success rounded-pill align-middle ms-1">2</span>
+              </button>
+            </h2>
+
+            <div id="flush-collapseSize" class="accordion-collapse collapse show"
+                 aria-labelledby="flush-headingSize">
+              <div class="accordion-body text-body pt-0">
+                <div class="d-flex flex-column gap-2 mt-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productSizeRadio7" checked/>
+                    <label class="form-check-label" for="productSizeRadio7">XS</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productSizeRadio6"/>
+                    <label class="form-check-label" for="productSizeRadio6">S</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productSizeRadio5"/>
+                    <label class="form-check-label" for="productSizeRadio5">M</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productSizeRadio4"/>
+                    <label class="form-check-label" for="productSizeRadio4">L</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productSizeRadio3" checked/>
+                    <label class="form-check-label" for="productSizeRadio3">XL</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productSizeRadio2" checked/>
+                    <label class="form-check-label" for="productSizeRadio2">2XL</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="productSizeRadio1" checked/>
+                    <label class="form-check-label" for="productSizeRadio1">3XL</label>
                   </div>
                 </div>
               </div>
@@ -554,7 +546,7 @@ export default {
               <button class="accordion-button bg-transparent shadow-none collapsed" type="button"
                       data-bs-toggle="collapse" data-bs-target="#flush-collapseDiscount" aria-expanded="true"
                       aria-controls="flush-collapseDiscount">
-                <span class="text-muted text-uppercase fs-12 fw-medium">Discount</span>
+                <span class="text-muted text-uppercase fs-12 fw-medium">Скидка</span>
                 <span class="badge bg-success rounded-pill align-middle ms-1">1</span>
               </button>
             </h2>
@@ -565,37 +557,37 @@ export default {
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productdiscountRadio6"/>
                     <label class="form-check-label" for="productdiscountRadio6">
-                      50% or more
+                      50% и более
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productdiscountRadio5"/>
                     <label class="form-check-label" for="productdiscountRadio5">
-                      40% or more
+                      40% и более
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productdiscountRadio4"/>
                     <label class="form-check-label" for="productdiscountRadio4">
-                      30% or more
+                      30% и более
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productdiscountRadio3" checked/>
                     <label class="form-check-label" for="productdiscountRadio3">
-                      20% or more
+                      20% и более
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productdiscountRadio2"/>
                     <label class="form-check-label" for="productdiscountRadio2">
-                      10% or more
+                      10% и более
                     </label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="productdiscountRadio1"/>
                     <label class="form-check-label" for="productdiscountRadio1">
-                      Less than 10%
+                      меньше 10%
                     </label>
                   </div>
                 </div>
@@ -609,7 +601,7 @@ export default {
               <button class="accordion-button bg-transparent shadow-none collapsed" type="button"
                       data-bs-toggle="collapse" data-bs-target="#flush-collapseRating" aria-expanded="false"
                       aria-controls="flush-collapseRating">
-                <span class="text-muted text-uppercase fs-12 fw-medium">Rating</span>
+                <span class="text-muted text-uppercase fs-12 fw-medium">Рейтинг</span>
                 <span class="badge bg-success rounded-pill align-middle ms-1">1</span>
               </button>
             </h2>
@@ -627,7 +619,7 @@ export default {
                           <i class="mdi mdi-star text-warning"></i>
                           <i class="mdi mdi-star"></i>
                         </span>
-                      4 & Above
+                      4 и выше
                     </label>
                   </div>
                   <div class="form-check">
@@ -640,7 +632,7 @@ export default {
                           <i class="mdi mdi-star"></i>
                           <i class="mdi mdi-star"></i>
                         </span>
-                      3 & Above
+                      3 и выше
                     </label>
                   </div>
                   <div class="form-check">
@@ -653,7 +645,7 @@ export default {
                           <i class="mdi mdi-star"></i>
                           <i class="mdi mdi-star"></i>
                         </span>
-                      2 & Above
+                      2 и выше
                     </label>
                   </div>
                   <div class="form-check">
@@ -687,7 +679,7 @@ export default {
             <div class="row g-4">
               <div class="col-sm-auto">
                 <div>
-                  <router-link to="/add-product" class="btn btn-success">
+                  <router-link to="/ecommerce/add-product" class="btn btn-success">
                     <i class="ri-add-line align-bottom me-1"></i>
                     {{ $t('t-add-product') }}
                   </router-link>
