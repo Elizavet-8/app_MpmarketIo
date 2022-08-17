@@ -207,8 +207,7 @@
         "view": "Просмотр",
         "edit": "Редактировать",
         "delete": "Удалить",
-        "download": "Скачать",
-        "add": "Добавить"
+        "download": "Скачать"
     },
     "t-members": "Участники",
     "t-last-update": "Последнее обновление",
@@ -253,7 +252,6 @@
         "purchase-price": "Цена Закупки",
         "supplier": "Поставщик",
         "remainder": "Остаток",
-        "img": "Изображение",
         "action": "Действия"
     },
     "t-table-finance-sort": {
@@ -317,10 +315,5 @@
     "t-cancel": "Отмена",
     "t-old-password": "Старый пароль*",
     "t-new-password": "Новый пароль*",
-    "t-confirm-password": "Подтвердите пароль*",
-    "t-main-cards": {
-        "sales": "Продажи",
-        "orders": "Заказы",
-        "balance": "Баланс"
-    }
+    "t-confirm-password": "Подтвердите пароль*"
 }

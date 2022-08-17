@@ -206,8 +206,7 @@
     "view": "View",
     "edit": "Edit",
     "delete": "Delete",
-    "download": "Download",
-    "add": "Create"
+    "download": "Download"
   },
   "t-members": "Members",
   "t-last-update": "Last Update",
@@ -253,7 +252,6 @@
     "purchase-price": "Purchase Price",
     "supplier": "Supplier",
     "remainder": "Remainder",
-    "img": "Image",
     "action": "Action"
   },
   "t-table-finance-sort": {
@@ -290,6 +288,7 @@
   "t-select": "Select",
   "t-result": "Result",
   "t-remove": "Remove",
+
   "t-tickets": "Tickets",
   "t-create-tickets": "Create Tickets",
   "t-table-support-sort": {
@@ -313,12 +312,8 @@
   "t-telegram": "Telegram",
   "t-updates": "Updates",
   "t-cancel": "Cancel",
+
   "t-old-password": "Old Password*",
   "t-new-password": "New Password*",
-  "t-confirm-password": "Confirm Password*",
-  "t-main-cards": {
-    "sales": "Sales",
-    "orders": "Orders",
-    "balance": "Balance"
-  }
+  "t-confirm-password": "Confirm Password*"
 }

@@ -124,9 +124,7 @@ export default {
               <input type="text" class="form-control" id="product-title-input" placeholder="Enter product title"/>
             </div>
             <div class="mb-3">
-              <label class="form-label" for="product-title-input">{{
-                  $t('t-table-products-sort.supplier-article')
-                }}</label>
+              <label class="form-label" for="product-title-input">{{$t('t-table-products-sort.supplier-article') }}</label>
               <input type="text" class="form-control" id="product-title-input" placeholder="Enter product title"/>
             </div>
             <div class="mb-3">
