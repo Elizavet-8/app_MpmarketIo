@@ -9,6 +9,7 @@ import "@vueform/multiselect/themes/default.css";
 import axios from 'axios';
 // import animationData from "@/components/widgets/msoeawqm.json";
 import Lottie from "@/components/widgets/lottie.vue";
+import products from "@/database/products.json";
 export default {
   page: {
     title: "Products",
@@ -32,59 +33,60 @@ export default {
       //   animationData: animationData
       // },
       sliderCustomzie: [1000, 3000],
-      productsData: [
-        {
-          id: 1,
-          image: require("@/assets/images/products/img-1.png"),
-          title: "Half Sleeve Round Neck T-Shirts",
-          brand: "Banzaron",
-          item: "Футболки-поло",
-          size_code: "125748800",
-          supplier_article: "ban-futb-poloбелый",
-          wb_article: "74499707",
-          color: "Белый",
-          size: "48",
-          barcode: "2028360865624",
-          retail_price: "1870",
-          purchase_price: "350",
-          supplier: " ",
-          remainder: " ",
-        },
-        {
-          id: 2,
-          image: require("@/assets/images/products/img-1.png"),
-          title: "Half Sleeve Round Neck T-Shirts",
-          brand: "Banzaron",
-          item: "Футболки-поло",
-          size_code: "125748801",
-          supplier_article: "ban-futb-poloбелый",
-          wb_article: "74499707",
-          color: "Белый",
-          size: "50",
-          barcode: "2028360865631",
-          retail_price: "1870",
-          purchase_price: "350",
-          supplier: " ",
-          remainder: " ",
-        },
-        {
-          id: 3,
-          image: require("@/assets/images/products/img-1.png"),
-          title: "Half Sleeve Round Neck T-Shirts",
-          brand: "Banzaron",
-          item: "Футболки-поло",
-          size_code: "125748802",
-          supplier_article: "ban-futb-poloбелый",
-          wb_article: "74499707",
-          color: "Белый",
-          size: "52",
-          barcode: "2028360865648",
-          retail_price: "1870",
-          purchase_price: "350",
-          supplier: " ",
-          remainder: " ",
-        },
-      ],
+      productsData: products,
+      // productsData: [
+      //   {
+      //     id: 1,
+      //     image: require("@/assets/images/products/img-1.png"),
+      //     title: "Half Sleeve Round Neck T-Shirts",
+      //     brand: "Banzaron",
+      //     item: "Футболки-поло",
+      //     size_code: "125748800",
+      //     supplier_article: "ban-futb-poloбелый",
+      //     wb_article: "74499707",
+      //     color: "Белый",
+      //     size: "48",
+      //     barcode: "2028360865624",
+      //     retail_price: "1870",
+      //     purchase_price: "350",
+      //     equipment: " ",
+      //     remainder: " ",
+      //   },
+      //   {
+      //     id: 2,
+      //     image: require("@/assets/images/products/img-1.png"),
+      //     title: "Half Sleeve Round Neck T-Shirts",
+      //     brand: "Banzaron",
+      //     item: "Футболки-поло",
+      //     size_code: "125748801",
+      //     supplier_article: "ban-futb-poloбелый",
+      //     wb_article: "74499707",
+      //     color: "Белый",
+      //     size: "50",
+      //     barcode: "2028360865631",
+      //     retail_price: "1870",
+      //     purchase_price: "350",
+      //     equipment: " ",
+      //     remainder: " ",
+      //   },
+      //   {
+      //     id: 3,
+      //     image: require("@/assets/images/products/img-1.png"),
+      //     title: "Half Sleeve Round Neck T-Shirts",
+      //     brand: "Banzaron",
+      //     item: "Футболки-поло",
+      //     size_code: "125748802",
+      //     supplier_article: "ban-futb-poloбелый",
+      //     wb_article: "74499707",
+      //     color: "Белый",
+      //     size: "52",
+      //     barcode: "2028360865648",
+      //     retail_price: "1870",
+      //     purchase_price: "350",
+      //     equipment: " ",
+      //     remainder: " ",
+      //   },
+      // ],
       pages: [],
       page: 1,
       perPage: 10,
@@ -111,7 +113,7 @@ export default {
               data.barcode.toLowerCase().includes(search) ||
               data.retail_price.toLowerCase().includes(search) ||
               data.purchase_price.toLowerCase().includes(search) ||
-              data.supplier.toLowerCase().includes(search) ||
+              data.equipment.toLowerCase().includes(search) ||
               data.remainder.toLowerCase().includes(search)
           );
         });
@@ -744,7 +746,7 @@ export default {
                       <th>{{ $t('t-table-products-sort.barcode') }}</th>
                       <th>{{ $t('t-table-products-sort.retail-price') }}</th>
                       <th>{{ $t('t-table-products-sort.purchase-price') }}</th>
-                      <th>{{ $t('t-table-products-sort.supplier') }}</th>
+                      <th>{{ $t('t-table-products-sort.equipment') }}</th>
                       <th>{{ $t('t-table-products-sort.remainder') }}</th>
                       <th scope="col">{{ $t('t-table-products-sort.action') }}</th>
                     </tr>
@@ -784,7 +786,7 @@ export default {
                       <td data-column-id="barcode" class="gridjs-td">{{ data.barcode }}</td>
                       <td data-column-id="retail_price" class="gridjs-td">{{ data.retail_price }}</td>
                       <td data-column-id="purchase_price" class="gridjs-td">{{ data.purchase_price }}</td>
-                      <td data-column-id="supplier" class="gridjs-td">{{ data.supplier }}</td>
+                      <td data-column-id="equipment" class="gridjs-td">{{ data.equipment }}</td>
                       <td data-column-id="remainder" class="gridjs-td">{{ data.remainder }}</td>
                       <td data-column-id="action" class="gridjs-td">
                     <span>

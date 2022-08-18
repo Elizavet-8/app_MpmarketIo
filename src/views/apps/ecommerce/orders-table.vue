@@ -7,6 +7,7 @@ import Multiselect from "@vueform/multiselect";
 import appConfig from "../../../../app.config";
 import axios from 'axios';
 // import Lottie from "@/components/widgets/lottie.vue";
+import orders from "@/database/orders.json";
 
 export default {
   page: {
@@ -39,59 +40,60 @@ export default {
       },
       date: null,
       date2: null,
-      orders: [
-        {
-          id: 1,
-          orderId: "#MP2101",
-          order_id: "360160139",
-          cabinet: "Деграунд WB",
-          img: "https://picsum.photos/200",
-          product_name: "Футболка",
-          color: "Белый",
-          size: "M",
-          barcode: "8903338567483",
-          amount: "990",
-          warehouse: "Склад Поставщик 287289",
-          created: "12.07.2022 16:17",
-          deliver_during: "48 ч.",
-          time_since_order: "1 ч. 40 мин.",
-          status: "Отменить"
-        },
-        {
-          id: 2,
-          orderId: "#MP2101",
-          order_id: "360160143",
-          cabinet: "Tekkon WB",
-          img: "https://picsum.photos/200",
-          product_name: "Костюм спортивный",
-          color: "Оранжевый",
-          size: "XL",
-          barcode: "8903338567481",
-          amount: "3990",
-          warehouse: "Склад Поставщик 287289",
-          created: "12.07.2022 16:17",
-          deliver_during: "52 ч.",
-          time_since_order: "5 ч. 40 мин.",
-          status: "Отменить"
-        },
-        {
-          id: 3,
-          orderId: "#MP2101",
-          order_id: "360160140",
-          cabinet: "Деграунд WB",
-          img: "https://picsum.photos/200",
-          product_name: "Рубашка",
-          color: "Черный",
-          size: "44",
-          barcode: "8903338567414",
-          amount: "1560",
-          warehouse: "Склад Поставщик 287289",
-          created: "12.07.2022 16:17",
-          deliver_during: "49 ч.",
-          time_since_order: "2 ч. 40 мин.",
-          status: "Отменить"
-        }
-      ],
+      orders: orders,
+      // orders: [
+      //   {
+      //     id: 1,
+      //     orderId: "#MP2101",
+      //     orderUID: "360160139",
+      //     officeAddress: "Деграунд WB",
+      //     img: "https://picsum.photos/200",
+      //     product_name: "Футболка",
+      //     color: "Белый",
+      //     size: "M",
+      //     barcode: "8903338567483",
+      //     amount: "990",
+      //     warehouse: "Склад Поставщик 287289",
+      //     created: "12.07.2022 16:17",
+      //     deliver_during: "48 ч.",
+      //     time_since_order: "1 ч. 40 мин.",
+      //     status: "Отменить"
+      //   },
+      //   {
+      //     id: 2,
+      //     orderId: "#MP2101",
+      //     orderUID: "360160143",
+      //     officeAddress: "Tekkon WB",
+      //     img: "https://picsum.photos/200",
+      //     product_name: "Костюм спортивный",
+      //     color: "Оранжевый",
+      //     size: "XL",
+      //     barcode: "8903338567481",
+      //     amount: "3990",
+      //     warehouse: "Склад Поставщик 287289",
+      //     created: "12.07.2022 16:17",
+      //     deliver_during: "52 ч.",
+      //     time_since_order: "5 ч. 40 мин.",
+      //     status: "Отменить"
+      //   },
+      //   {
+      //     id: 3,
+      //     orderId: "#MP2101",
+      //     orderUID: "360160140",
+      //     officeAddress: "Деграунд WB",
+      //     img: "https://picsum.photos/200",
+      //     product_name: "Рубашка",
+      //     color: "Черный",
+      //     size: "44",
+      //     barcode: "8903338567414",
+      //     amount: "1560",
+      //     warehouse: "Склад Поставщик 287289",
+      //     created: "12.07.2022 16:17",
+      //     deliver_during: "49 ч.",
+      //     time_since_order: "2 ч. 40 мин.",
+      //     status: "Отменить"
+      //   }
+      // ],
       isStatus: null,
       isPayment: null,
     };
@@ -111,7 +113,7 @@ export default {
         return this.displayedPosts.filter((data) => {
           return (
               data.orderId.toLowerCase().includes(search) ||
-              data.cabinet.toLowerCase().includes(search) ||
+              data.officeAddress.toLowerCase().includes(search) ||
               data.photo.toLowerCase().includes(search) ||
               data.product_name.toLowerCase().includes(search) ||
               data.color.toLowerCase().includes(search) ||
@@ -563,17 +565,34 @@ export default {
               </th>
               <th class="sort" data-sort="id">ID</th>
               <th class="sort" data-sort="id">{{ $t('t-table-orders-sort.order-id') }}</th>
-              <th class="sort" data-sort="cabinet">{{ $t('t-table-orders-sort.cabinet') }}</th>
-              <th class="sort" data-sort="photo">{{ $t('t-table-orders-sort.photo') }}</th>
-              <th class="sort" data-sort="product_name'">{{ $t('t-table-orders-sort.product-name') }}</th>
-              <th class="sort" data-sort="color">{{ $t('t-table-orders-sort.color') }}</th>
-              <th class="sort" data-sort="size">{{ $t('t-table-orders-sort.size') }}</th>
-              <th class="sort" data-sort="barcode">{{ $t('t-table-orders-sort.barcode') }}</th>
-              <th class="sort" data-sort="amount">{{ $t('t-table-orders-sort.amount') }}</th>
-              <th class="sort" data-sort="warehouse">{{ $t('t-table-orders-sort.warehouse') }}</th>
-              <th class="sort" data-sort="created">{{ $t('t-table-orders-sort.created') }}</th>
-              <th class="sort" data-sort="deliver_during">{{ $t('t-table-orders-sort.deliver-during') }}</th>
-              <th class="sort" data-sort="time_since_order">{{ $t('t-table-orders-sort.time-since-order') }}</th>
+              <th class="sort">ФИО</th>
+              <th class="sort">email</th>
+              <th class="sort">Телефон</th>
+              <th class="sort">Дата создания</th>
+              <th class="sort">Адрес офиса</th>
+              <th class="sort">Адрес доставки</th>
+              <th class="sort">rid</th>
+              <th class="sort">Штрих-код</th>
+              <th class="sort">Штрих-коды</th>
+              <th class="sort">Названия офисов sc</th>
+              <th class="sort">Провинция</th>
+              <th class="sort">Область</th>
+              <th class="sort">Город</th>
+              <th class="sort">Улица</th>
+              <th class="sort">Дом</th>
+              <th class="sort">Квартира</th>
+              <th class="sort">Вход</th>
+              <th class="sort">Долгота</th>
+              <th class="sort">Широта</th>
+              <th class="sort">chrtId</th>
+              <th class="sort">pid</th>
+              <th class="sort">wbWhId</th>
+              <th class="sort">Статус пользователя</th>
+              <th class="sort">storeId</th>
+              <th class="sort">Итоговая цена</th>
+              <th class="sort">Конвертированная цена</th>
+              <th class="sort">Тип доставки</th>
+              <th class="sort">Код валюты</th>
               <th class="sort" data-sort="status">{{ $t('t-table-orders-sort.delivery-status') }}</th>
               <th class="sort" data-sort="action">{{ $t('t-table-orders-sort.action') }}</th>
             </tr>
@@ -590,32 +609,44 @@ export default {
                 <router-link to="/ecommerce/order-details" class="fw-medium link-primary">{{ data.orderId }}
                 </router-link>
               </td>
-              <td class="product_name">{{ data.order_id }}</td>
-              <td class="customer_name">{{ data.cabinet }}</td>
-              <td class="customer_name">
-                <div class="d-flex align-items-center" v-if="data.img">
-                  <img :src="data.img" alt="" class="avatar-xs rounded-circle me-2"/>
+              <td>{{ data.orderUID }}</td>
+              <td>{{ data.userInfo.fio }}</td>
+              <td>{{ data.userInfo.email }}</td>
+              <td>{{ data.userInfo.phone }}</td>
+              <td>{{ data.dateCreated }}</td>
+              <td>{{ data.officeAddress }}</td>
+              <td>{{ data.deliveryAddress }}</td>
+              <td>{{ data.rid }}</td>
+              <td>{{ data.barcode }}</td>
+              <td>
+                <div v-for="(item, index) of data.barcodes" :key="index">
+                  {{ item }}
                 </div>
               </td>
-              <td class="product_name">{{ data.product_name }}</td>
-              <td class="color">{{ data.color }}</td>
-              <td class="size">{{ data.size }}</td>
-              <td class="barcode">{{ data.barcode }}</td>
-              <td class="amount">{{ data.amount }}</td>
-              <td class="warehouse">{{ data.warehouse }}</td>
-              <td class="created">{{ data.created }}</td>
-              <td class="deliver_during">{{ data.deliver_during }}</td>
-              <td class="time_since_order">{{ data.time_since_order }}</td>
-              <td class="status">
-                        <span class="badge text-uppercase" :class="{
-                          'badge-soft-primary': data.status == 'На сборке',
-                          'badge-soft-info': data.status == 'Отменено',
-                          'badge-soft-success': data.status == 'Собрано',
-                          'badge-soft-danger': data.status == 'Архив',
-                          'badge-soft-secondary': data.status == 'Returns',
-                          'badge-soft-warning': data.status == 'Ожидает',
-                        }">{{ data.status }}</span>
+              <td>
+                <div v-for="(item, index) of data.scOfficesNames" :key="index">
+                  {{ item }}
+                </div>
               </td>
+              <td>{{ data.deliveryAddressDetails.province }}</td>
+              <td>{{ data.deliveryAddressDetails.area }}</td>
+              <td>{{ data.deliveryAddressDetails.city }}</td>
+              <td>{{ data.deliveryAddressDetails.street }}</td>
+              <td>{{ data.deliveryAddressDetails.home }}</td>
+              <td>{{ data.deliveryAddressDetails.flat }}</td>
+              <td>{{ data.deliveryAddressDetails.entrance }}</td>
+              <td>{{ data.deliveryAddressDetails.longitude }}</td>
+              <td>{{ data.deliveryAddressDetails.latitude }}</td>
+              <td>{{ data.chrtId }}</td>
+              <td>{{ data.pid }}</td>
+              <td>{{ data.wbWhId }}</td>
+              <td>{{ data.userStatus }}</td>
+              <td>{{ data.storeId }}</td>
+              <td>{{ data.totalPrice }}</td>
+              <td>{{ data.convertedPrice }}</td>
+              <td>{{ data.deliveryType }}</td>
+              <td>{{ data.currencyCode }}</td>
+              <td>{{ data.status }}</td>
               <td>
                 <ul class="list-inline hstack gap-2 mb-0">
                   <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover"
@@ -748,14 +779,15 @@ export default {
                 <div class="row gy-4 mb-3">
                   <div class="col-md-6">
                     <div>
-                      <label for="cabinet-field" class="form-label">Кабинет</label>
-                      <input type="text" id="cabinet-field" class="form-control" placeholder="Кабинет" required/>
+                      <label for="officeAddress-field" class="form-label">Кабинет</label>
+                      <input type="text" id="officeAddress-field" class="form-control" placeholder="Кабинет" required/>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div>
                       <label for="product-field" class="form-label">Название товара</label>
-                      <input type="text" id="product-field" class="form-control" placeholder="Название товара" required/>
+                      <input type="text" id="product-field" class="form-control" placeholder="Название товара"
+                             required/>
                     </div>
                   </div>
                 </div>
